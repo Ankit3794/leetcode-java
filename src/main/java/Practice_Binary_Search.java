@@ -24,9 +24,33 @@ public class Practice_Binary_Search {
         return arr[start];
     }
 
+    public char nextGreatestLetter(char[] arr, char target) {
+        // return smallest integer >= target
+        int start = 0;
+        int end = arr.length - 1;
+        if (arr[end] <= target) {
+            return arr[start];
+        }
+        while (start <= end) {
+            int middle = start + (end - start) / 2;
+//            if (target == arr[middle]) {
+//                return middle == arr.length - 1 ? arr[0] : arr[middle+1];
+//            }
+            if (target < arr[middle]) {
+                end = middle - 1;
+            } else {
+                start = middle + 1;
+            }
+        }
+        return arr[start];
+    }
+
     public static void main(String[] args) {
         Practice_Binary_Search test = new Practice_Binary_Search();
-        int[] nums = {1, 4, 6, 8, 13, 30};
-        System.out.println(test.ceilingOfNum(nums, 10));
+
+        char[] arr = {'c','f','g'};
+        System.out.println(test.nextGreatestLetter(arr, 'a'));
+        System.out.println(test.nextGreatestLetter(arr, 'c'));
+        System.out.println(test.nextGreatestLetter(arr, 'g'));
     }
 }
