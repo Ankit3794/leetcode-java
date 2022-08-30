@@ -45,6 +45,32 @@ public class Practice_Binary_Search {
         return arr[start];
     }
 
+    public int orderAgnosticBinarySearch(int[] arr, int target){
+        int start = 0;
+        int end = arr.length - 1;
+        boolean isAscOrder = arr[start] < arr[end];
+        while (start <= end) {
+            int middle = start + (end - start) / 2;
+            if (target == arr[middle]) {
+                return middle;
+            }
+            if(isAscOrder) {
+                if (target < arr[middle]) {
+                    end = middle - 1;
+                } else {
+                    start = middle + 1;
+                }
+            } else {
+                if(target > arr[middle]){
+                    end = middle -1;
+                } else {
+                    start = middle + 1;
+                }
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         Practice_Binary_Search test = new Practice_Binary_Search();
 
@@ -52,5 +78,15 @@ public class Practice_Binary_Search {
         System.out.println(test.nextGreatestLetter(arr, 'a'));
         System.out.println(test.nextGreatestLetter(arr, 'c'));
         System.out.println(test.nextGreatestLetter(arr, 'g'));
+
+        int[] ascNums = {1,3,4,6,8,10};
+        int[] descNums = {10,9,6,4,3,1};
+
+        System.out.println(test.orderAgnosticBinarySearch(ascNums, 4));
+        System.out.println(test.orderAgnosticBinarySearch(ascNums, 10));
+        System.out.println(test.orderAgnosticBinarySearch(ascNums, 12));
+        System.out.println(test.orderAgnosticBinarySearch(descNums, 6));
+        System.out.println(test.orderAgnosticBinarySearch(descNums, 4));
+        System.out.println(test.orderAgnosticBinarySearch(descNums, 0));
     }
 }
