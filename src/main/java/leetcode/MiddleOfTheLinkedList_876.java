@@ -1,3 +1,5 @@
+package leetcode;
+
 /**
  * https://leetcode.com/problems/middle-of-the-linked-list/submissions/
  * Given the head of a singly linked list, return the middle node of the linked list.
